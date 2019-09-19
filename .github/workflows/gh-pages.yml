@@ -1,6 +1,6 @@
 name: github pages
 
-on:
+on: 
   push:
     branches:
     - source # default branch
@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
+      with:
+        submodules: true
 
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2.1.0
@@ -17,7 +19,7 @@ jobs:
         hugo-version: '0.58.2'
 
     - name: Build
-      run: hugo --gc --minify --cleanDestinationDir
+      run: hugo -v --gc --minify --cleanDestinationDir
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.3.1
